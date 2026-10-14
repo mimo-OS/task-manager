@@ -1,107 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <defs>
-    <!-- Cutefish Signature Electric Blue-Cyan Radiant Gradient -->
-    <linearGradient id="cuteBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0052FF"/>
-      <stop offset="35%" stop-color="#0072FF"/>
-      <stop offset="70%" stop-color="#00A2FF"/>
-      <stop offset="100%" stop-color="#00D8FF"/>
-    </linearGradient>
-
-    <!-- Speedometer / Performance Speed Arc (Mint to White to Cyan) -->
-    <linearGradient id="speedArc" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00F5D4"/>
-      <stop offset="35%" stop-color="#FFFFFF"/>
-      <stop offset="75%" stop-color="#7CE8FF"/>
-      <stop offset="100%" stop-color="#00C4FF"/>
-    </linearGradient>
-
-    <!-- Secondary Memory Arc (Mint to White) -->
-    <linearGradient id="memArc" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00F5D4" stop-opacity="0.85"/>
-      <stop offset="60%" stop-color="#55FFB0" stop-opacity="0.5"/>
-      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.2"/>
-    </linearGradient>
-
-    <!-- Central Radial Ambient Glow -->
-    <radialGradient id="centerGlow" cx="50%" cy="48%" r="52%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.32"/>
-      <stop offset="55%" stop-color="#00D2FF" stop-opacity="0.16"/>
-      <stop offset="100%" stop-color="#0052FF" stop-opacity="0"/>
-    </radialGradient>
-
-    <!-- Pure White Perimeter Rim Stroke (Tactile Glass Highlight, Zero Black) -->
-    <linearGradient id="rimStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.55"/>
-      <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.06"/>
-    </linearGradient>
-
-    <!-- Top Specular Gloss Overlay -->
-    <linearGradient id="specularGloss" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.20"/>
-      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.0"/>
-    </linearGradient>
-  </defs>
-
-  <!-- 1. Background Squircle with Native rx/ry (100% Smooth in QtSvg without clipPath) -->
-  <rect x="24" y="24" width="464" height="464" rx="108" ry="108" fill="url(#cuteBg)"/>
-
-  <!-- 2. Ambient Center Glow -->
-  <circle cx="256" cy="250" r="215" fill="url(#centerGlow)"/>
-
-  <!-- 3. Top Specular Glass Sheen (Follows Exact Squircle Corner Radius) -->
-  <path d="M 24,132 A 108 108 0 0 1 132,24 L 380,24 A 108 108 0 0 1 488,132 C 488,175 370,195 256,195 C 142,195 24,175 24,132 Z"
-        fill="url(#specularGloss)"/>
-
-  <!-- 4. Pure White Perimeter Rim Light Stroke -->
-  <rect x="24" y="24" width="464" height="464" rx="108" ry="108" fill="none" stroke="url(#rimStroke)" stroke-width="2.5"/>
-
-  <!-- 5. Speedometer / Telemetry Ring System -->
-  <!-- Outer Dashed Track -->
-  <circle cx="256" cy="256" r="158" fill="none" stroke="#FFFFFF" stroke-opacity="0.15" stroke-width="12" stroke-linecap="round"
-          stroke-dasharray="210 50 16 50 78 50"/>
-
-  <!-- High-Performance Speed Arc (Cyan to Mint to White) -->
-  <path d="M 128,326 A 158 158 0 1 1 384,326" fill="none" stroke="url(#speedArc)" stroke-width="15" stroke-linecap="round"/>
-
-  <!-- Precision Tick Coordinate Ring -->
-  <circle cx="256" cy="256" r="128" fill="none" stroke="#FFFFFF" stroke-opacity="0.20" stroke-width="2" stroke-dasharray="3 7"/>
-
-  <!-- Inner Secondary Resource Arc (Memory / Buffer) -->
-  <path d="M 164,302 A 114 114 0 1 1 348,302" fill="none" stroke="url(#memArc)" stroke-width="6" stroke-linecap="round"
-        stroke-dasharray="136 18 56 18"/>
-
-  <!-- Central Frosted Dial Disc -->
-  <circle cx="256" cy="256" r="84" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1.5"/>
-
-  <!-- Subtle Dial Crosshair Ticks -->
-  <line x1="256" y1="188" x2="256" y2="198" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="2" stroke-linecap="round"/>
-  <line x1="256" y1="314" x2="256" y2="324" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="2" stroke-linecap="round"/>
-  <line x1="188" y1="256" x2="198" y2="256" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="2" stroke-linecap="round"/>
-  <line x1="314" y1="256" x2="324" y2="256" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="2" stroke-linecap="round"/>
-
-  <!-- 6. Hero Telemetry Pulse (Cleanly stays inside safe bounds x=74 to x=438) -->
-  <path d="M 74,256 L 144,256 L 166,242 L 182,256 L 198,276 L 236,134 L 272,354 L 308,212 L 340,268 L 360,252 L 374,256 L 438,256"
-        fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- Apex Pulse Beacon Node (x=236, y=134) -->
-  <circle cx="236" cy="134" r="20" fill="#00F5D4" opacity="0.4"/>
-  <circle cx="236" cy="134" r="10" fill="#00E5FF"/>
-  <circle cx="236" cy="134" r="5" fill="#FFFFFF"/>
-
-  <!-- Secondary Peak Node (x=308, y=212) -->
-  <circle cx="308" cy="212" r="7" fill="#FFFFFF" opacity="0.5"/>
-  <circle cx="308" cy="212" r="4.5" fill="#FFFFFF"/>
-
-  <!-- 7. Bottom Cutefish Telemetry Status Capsule -->
-  <g transform="translate(256, 394)">
-    <rect x="-62" y="-13" width="124" height="26" rx="13" fill="#FFFFFF" fill-opacity="0.14" stroke="#FFFFFF" stroke-opacity="0.24" stroke-width="1"/>
-    <!-- CPU Dot (Cyan) -->
-    <circle cx="-32" cy="0" r="4.5" fill="#00F5D4"/>
-    <!-- RAM Dot (White) -->
-    <circle cx="0" cy="0" r="4.5" fill="#FFFFFF"/>
-    <!-- Storage Dot (Soft White) -->
-    <circle cx="32" cy="0" r="4.5" fill="#FFFFFF" opacity="0.5"/>
-  </g>
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="#168BFF"/>
+  <rect x="80" y="88" width="352" height="336" rx="40" fill="#FFFFFF"/>
+  <circle cx="128" cy="136" r="9" fill="#FF6259"/>
+  <circle cx="160" cy="136" r="9" fill="#FFBF2F"/>
+  <circle cx="192" cy="136" r="9" fill="#30C759"/>
+  <path d="M112 176h288" fill="none" stroke="#DCEBFA" stroke-width="8" stroke-linecap="round"/>
+  <path d="M120 318h272v24H120z" fill="#EAF6FF"/>
+  <path d="M120 318h42l24-25 24 39 39-94 35 111 31-57 23 26h54v24H120z" fill="#DDF4FF"/>
+  <path d="M120 318h42l24-25 24 39 39-94 35 111 31-57 23 26h54" fill="none" stroke="#168BFF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="279" cy="238" r="10" fill="#30C759"/>
+  <circle cx="124" cy="374" r="8" fill="#168BFF"/>
+  <path d="M148 374h108" fill="none" stroke="#B8DDFB" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="124" cy="400" r="8" fill="#34C759"/>
+  <path d="M148 400h72" fill="none" stroke="#B8DDFB" stroke-width="12" stroke-linecap="round"/>
 </svg>

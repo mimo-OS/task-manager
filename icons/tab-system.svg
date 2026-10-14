@@ -1,31 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-  <defs>
-    <linearGradient id="chipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#AF52DE"/>
-      <stop offset="100%" stop-color="#5856D6"/>
-    </linearGradient>
-  </defs>
-  <!-- Chip Pins -->
-  <g stroke="#AF52DE" stroke-width="1.5" stroke-linecap="round">
-    <line x1="7" y1="2" x2="7" y2="4.5"/>
-    <line x1="12" y1="2" x2="12" y2="4.5"/>
-    <line x1="17" y1="2" x2="17" y2="4.5"/>
-    
-    <line x1="7" y1="19.5" x2="7" y2="22"/>
-    <line x1="12" y1="19.5" x2="12" y2="22"/>
-    <line x1="17" y1="19.5" x2="17" y2="22"/>
-
-    <line x1="2" y1="7" x2="4.5" y2="7"/>
-    <line x1="2" y1="12" x2="4.5" y2="12"/>
-    <line x1="2" y1="17" x2="4.5" y2="17"/>
-
-    <line x1="19.5" y1="7" x2="22" y2="7"/>
-    <line x1="19.5" y1="12" x2="22" y2="12"/>
-    <line x1="19.5" y1="17" x2="22" y2="17"/>
-  </g>
-  <!-- Silicon Package Body -->
-  <rect x="4.5" y="4.5" width="15" height="15" rx="3.5" fill="url(#chipGrad)"/>
-  <!-- Silicon Die Core -->
-  <rect x="8.5" y="8.5" width="7" height="7" rx="1.5" fill="#FFFFFF" opacity="0.3"/>
-  <rect x="10" y="10" width="4" height="4" rx="1" fill="#FFFFFF"/>
+  <rect x="6" y="6" width="12" height="12" rx="2.5" fill="#AF52DE" fill-opacity=".14"/>
+  <rect x="7" y="7" width="10" height="10" rx="1.8" fill="none" stroke="#AF52DE" stroke-width="1.8"/>
+  <rect x="10" y="10" width="4" height="4" rx="1" fill="#AF52DE"/>
+  <path d="M9 3.5v2m6-2v2m-6 13v2m6-2v2m-13-9h2m-2 5h2m13-5h2m-2 5h2" fill="none" stroke="#AF52DE" stroke-width="1.7" stroke-linecap="round"/>
 </svg>
