@@ -462,10 +462,12 @@ void ProcessModel::updateProcesses()
         if (fieldsParsed < 10)
             continue;
 
-        ProcessInfo proc = m_allProcesses.value(pid);
+        ProcessInfo &proc = m_allProcesses[pid];
         proc.pid = pid;
         proc.ppid = ppid;
-        proc.name = name;
+        if (proc.name != name) {
+            proc.name = name;
+        }
         proc.priority = nice;
         proc.threads = (num_threads > 0) ? (int)num_threads : 1;
         proc.virtualMemoryBytes = (qulonglong)vsize;
@@ -474,14 +476,18 @@ void ProcessModel::updateProcesses()
         proc.startTime = starttime;
 
         // Status string
+        QString newStatus;
         switch (stateChar) {
-        case 'R': proc.status = QStringLiteral("Running"); break;
-        case 'S': proc.status = QStringLiteral("Sleeping"); break;
-        case 'D': proc.status = QStringLiteral("Disk Sleep"); break;
-        case 'Z': proc.status = QStringLiteral("Zombie"); break;
-        case 'T': case 't': proc.status = QStringLiteral("Stopped"); break;
-        case 'I': proc.status = QStringLiteral("Idle"); break;
-        default: proc.status = QString(stateChar); break;
+        case 'R': newStatus = QStringLiteral("Running"); break;
+        case 'S': newStatus = QStringLiteral("Sleeping"); break;
+        case 'D': newStatus = QStringLiteral("Disk Sleep"); break;
+        case 'Z': newStatus = QStringLiteral("Zombie"); break;
+        case 'T': case 't': newStatus = QStringLiteral("Stopped"); break;
+        case 'I': newStatus = QStringLiteral("Idle"); break;
+        default: newStatus = QString(stateChar); break;
+        }
+        if (proc.status != newStatus) {
+            proc.status = newStatus;
         }
 
         // Calculate CPU usage
@@ -542,16 +548,15 @@ void ProcessModel::updateProcesses()
         if (proc.iconName.isEmpty()) {
             proc.iconName = resolveAppIcon(proc.name, proc.cmdline);
         }
-
-        m_allProcesses.insert(pid, proc);
     }
     closedir(dir);
 
-    // Remove dead processes
-    QList<int> existingPids = m_allProcesses.keys();
-    for (int p : existingPids) {
-        if (!foundPids.contains(p)) {
-            m_allProcesses.remove(p);
+    // Remove dead processes without allocating temporary keys list
+    for (auto it = m_allProcesses.begin(); it != m_allProcesses.end(); ) {
+        if (!foundPids.contains(it.key())) {
+            it = m_allProcesses.erase(it);
+        } else {
+            ++it;
         }
     }
 

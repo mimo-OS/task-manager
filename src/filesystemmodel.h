@@ -29,6 +29,7 @@ class FileSystemModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(bool active READ active WRITE setActive NOTIFY activeChanged)
 
 public:
     enum FsRoles {
@@ -49,6 +50,9 @@ public:
     explicit FileSystemModel(QObject *parent = nullptr);
     ~FileSystemModel() override;
 
+    bool active() const { return m_active; }
+    void setActive(bool active);
+
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
@@ -58,6 +62,7 @@ public:
 
 signals:
     void countChanged();
+    void activeChanged();
 
 private slots:
     void updateFileSystems();
@@ -66,6 +71,7 @@ private:
     static QString formatBytes(qulonglong bytes);
 
     QTimer *m_timer;
+    bool m_active = false;
     QVector<FileSystemInfo> m_fileSystems;
 };
 

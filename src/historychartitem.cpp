@@ -15,7 +15,7 @@ HistoryChartItem::HistoryChartItem(QQuickItem *parent)
     : QQuickPaintedItem(parent)
 {
     setFlag(ItemHasContents, true);
-    setRenderTarget(QQuickPaintedItem::Image);
+    setRenderTarget(QQuickPaintedItem::FramebufferObject);
     setAntialiasing(true);
     setSmooth(true);
 }
@@ -24,14 +24,16 @@ void HistoryChartItem::setValues(const QVariantList &vals)
 {
     m_values = vals;
     emit valuesChanged();
-    update();
+    if (isVisible())
+        update();
 }
 
 void HistoryChartItem::setValues2(const QVariantList &vals)
 {
     m_values2 = vals;
     emit values2Changed();
-    update();
+    if (isVisible())
+        update();
 }
 
 void HistoryChartItem::setColor(const QColor &c)
@@ -100,6 +102,8 @@ void HistoryChartItem::setIsDark(bool dark)
 
 void HistoryChartItem::paint(QPainter *painter)
 {
+    if (!isVisible()) return;
+
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setRenderHint(QPainter::SmoothPixmapTransform, true);
 

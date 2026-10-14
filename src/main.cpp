@@ -16,6 +16,11 @@
 #include <QDir>
 #include <QTimer>
 
+#if defined(__linux__)
+#include <malloc.h>
+#endif
+#include <QPixmapCache>
+
 #include "processmodel.h"
 #include "systemmonitor.h"
 #include "filesystemmodel.h"
@@ -23,11 +28,41 @@
 
 int main(int argc, char *argv[])
 {
+#if defined(__linux__)
+    mallopt(M_ARENA_MAX, 2);
+    mallopt(M_TRIM_THRESHOLD, 128 * 1024);
+    mallopt(M_MMAP_THRESHOLD, 64 * 1024);
+#endif
+
+    // If no NVIDIA GPU device exists, restrict EGL ICD loader to Mesa/system driver
+    // to prevent libglvnd from unconditionally mapping huge unused proprietary NVIDIA libraries.
+    if (!QFile::exists(QStringLiteral("/dev/nvidia0"))
+        && QFile::exists(QStringLiteral("/usr/share/glvnd/egl_vendor.d/50_mesa.json"))
+        && qEnvironmentVariableIsEmpty("__EGL_VENDOR_LIBRARY_FILENAMES")) {
+        qputenv("__EGL_VENDOR_LIBRARY_FILENAMES", "/usr/share/glvnd/egl_vendor.d/50_mesa.json");
+    }
+
+    if (qEnvironmentVariableIsEmpty("QSG_RENDER_LOOP")) {
+        qputenv("QSG_RENDER_LOOP", "basic");
+    }
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
 #endif
 
     QGuiApplication app(argc, argv);
+    QPixmapCache::setCacheLimit(4096);
+
+#if defined(__linux__)
+    QTimer *trimTimer = new QTimer(&app);
+    QObject::connect(trimTimer, &QTimer::timeout, []() {
+        malloc_trim(0);
+    });
+    trimTimer->start(30000);
+    QTimer::singleShot(1500, []() {
+        malloc_trim(0);
+    });
+#endif
     app.setApplicationName(QStringLiteral("cutefish-taskmanager"));
     app.setApplicationDisplayName(QStringLiteral("Task Manager"));
     app.setApplicationVersion(QStringLiteral("1.0.0"));

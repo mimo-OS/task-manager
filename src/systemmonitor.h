@@ -35,6 +35,8 @@ class SystemMonitor : public QObject
 {
     Q_OBJECT
 
+    Q_PROPERTY(bool active READ active WRITE setActive NOTIFY activeChanged)
+
     // CPU Properties
     Q_PROPERTY(double cpuPercent READ cpuPercent NOTIFY cpuUpdated)
     Q_PROPERTY(QVariantList cpuPerCore READ cpuPerCore NOTIFY cpuUpdated)
@@ -86,6 +88,9 @@ public:
     explicit SystemMonitor(QObject *parent = nullptr);
     ~SystemMonitor() override;
 
+    bool active() const { return m_active; }
+    void setActive(bool active);
+
     double cpuPercent() const { return m_cpuPercent; }
     QVariantList cpuPerCore() const { return m_cpuPerCore; }
     int cpuCount() const { return m_cpuCount; }
@@ -134,6 +139,7 @@ public:
     Q_INVOKABLE static QString formatRate(qulonglong bytesPerSec);
 
 signals:
+    void activeChanged();
     void cpuUpdated();
     void memoryUpdated();
     void networkUpdated();
@@ -156,6 +162,7 @@ private:
     void appendHistory(QVariantList &list, double val, int maxPoints = 60);
 
     QTimer *m_timer;
+    bool m_active = false;
     const int m_historyLimit = 60; // 60 points of history
 
     // CPU

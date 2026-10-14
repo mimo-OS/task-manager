@@ -42,12 +42,29 @@ SystemMonitor::SystemMonitor(QObject *parent)
     updateUptime();
 
     connect(m_timer, &QTimer::timeout, this, &SystemMonitor::updateStats);
-    m_timer->start(1000); // 1 second sample rate for live smooth charts
+    if (m_active) {
+        m_timer->start(1000);
+    }
 }
 
 SystemMonitor::~SystemMonitor()
 {
     m_timer->stop();
+}
+
+void SystemMonitor::setActive(bool active)
+{
+    if (m_active == active)
+        return;
+
+    m_active = active;
+    if (m_active) {
+        updateStats();
+        m_timer->start(1000);
+    } else {
+        m_timer->stop();
+    }
+    emit activeChanged();
 }
 
 void SystemMonitor::initSystemInfo()

@@ -145,6 +145,8 @@ Item {
                 boundsBehavior: Flickable.StopAtBounds
                 keyNavigationEnabled: true
                 focus: true
+                reuseItems: true
+                cacheBuffer: 128
 
                 ScrollBar.vertical: ScrollBar {
                     id: vScroll
@@ -184,16 +186,18 @@ Item {
                             Layout.fillWidth: true
                             spacing: 8
 
-                            FishUI.IconItem {
+                            Image {
                                 width: 16
                                 height: 16
+                                sourceSize: Qt.size(16, 16)
                                 Layout.alignment: Qt.AlignVCenter
+                                fillMode: Image.PreserveAspectFit
                                 source: {
-                                    if (!model.iconName || model.iconName.length === 0)
+                                    if (!model.iconName || model.iconName.length === 0 || model.iconName === "process-default")
                                         return "qrc:/icons/process-default.svg"
-                                    if (model.iconName === "process-default" || model.iconName === "process-system")
-                                        return "qrc:/icons/" + model.iconName + ".svg"
-                                    return model.iconName
+                                    if (model.iconName === "process-system")
+                                        return "qrc:/icons/process-system.svg"
+                                    return "image://icontheme/" + model.iconName
                                 }
                             }
 

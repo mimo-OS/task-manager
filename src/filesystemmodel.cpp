@@ -15,15 +15,31 @@ FileSystemModel::FileSystemModel(QObject *parent)
     : QAbstractListModel(parent)
     , m_timer(new QTimer(this))
 {
-    updateFileSystems();
-
     connect(m_timer, &QTimer::timeout, this, &FileSystemModel::updateFileSystems);
-    m_timer->start(5000); // Poll disks every 5s
+    if (m_active) {
+        updateFileSystems();
+        m_timer->start(5000);
+    }
 }
 
 FileSystemModel::~FileSystemModel()
 {
     m_timer->stop();
+}
+
+void FileSystemModel::setActive(bool active)
+{
+    if (m_active == active)
+        return;
+
+    m_active = active;
+    if (m_active) {
+        updateFileSystems();
+        m_timer->start(5000);
+    } else {
+        m_timer->stop();
+    }
+    emit activeChanged();
 }
 
 int FileSystemModel::rowCount(const QModelIndex &parent) const

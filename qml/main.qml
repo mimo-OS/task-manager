@@ -34,10 +34,12 @@ FishUI.Window {
 
     SystemMonitor {
         id: systemMonitor
+        active: viewStack.currentIndex === 1 || viewStack.currentIndex === 3
     }
 
     FileSystemModel {
         id: fileSystemModel
+        active: viewStack.currentIndex === 2
     }
 
     // Header Bar Integration
@@ -80,7 +82,7 @@ FishUI.Window {
         anchors.topMargin: 6
         currentIndex: 0
 
-        // Page 0: Processes
+        // Page 0: Processes (Always active default)
         ProcessesView {
             id: processesView
             model: processModel
@@ -107,19 +109,31 @@ FishUI.Window {
             }
         }
 
-        // Page 1: Resources (Live Charts)
-        ResourcesView {
-            id: resourcesView
+        // Page 1: Resources (Live Charts, loaded on first visit)
+        Loader {
+            id: resourcesLoader
+            active: viewStack.currentIndex === 1 || loaded
+            property bool loaded: false
+            source: "ResourcesView.qml"
+            onLoaded: loaded = true
         }
 
-        // Page 2: File Systems
-        FileSystemsView {
-            id: fileSystemsView
+        // Page 2: File Systems (loaded on first visit)
+        Loader {
+            id: fileSystemsLoader
+            active: viewStack.currentIndex === 2 || loaded
+            property bool loaded: false
+            source: "FileSystemsView.qml"
+            onLoaded: loaded = true
         }
 
-        // Page 3: System Overview
-        SystemInfoView {
-            id: systemInfoView
+        // Page 3: System Overview (loaded on first visit)
+        Loader {
+            id: systemInfoLoader
+            active: viewStack.currentIndex === 3 || loaded
+            property bool loaded: false
+            source: "SystemInfoView.qml"
+            onLoaded: loaded = true
         }
     }
 
