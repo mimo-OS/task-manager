@@ -93,8 +93,8 @@ void SystemMonitor::initSystemInfo()
         }
         osRelease.close();
     }
-    if (m_osName.isEmpty()) {
-        m_osName = QStringLiteral("Linux");
+    if (m_osName.isEmpty() || m_osName.contains("Cutefish", Qt::CaseInsensitive)) {
+        m_osName = QStringLiteral("mimo OS");
     }
 
     // CPU Model and core count

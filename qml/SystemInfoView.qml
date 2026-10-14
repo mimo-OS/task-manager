@@ -71,7 +71,7 @@ ScrollView {
                     }
 
                     Text {
-                        text: "Cutefish Desktop Environment"
+                        text: "mimo OS Desktop Environment"
                         font.pixelSize: 13
                         font.weight: Font.Medium
                         color: "#007AFF"

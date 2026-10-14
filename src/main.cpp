@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     });
 #endif
     app.setApplicationName(QStringLiteral("cutefish-taskmanager"));
-    app.setApplicationDisplayName(QStringLiteral("Task Manager"));
+    app.setApplicationDisplayName(QStringLiteral("mimo OS Task Manager"));
     app.setApplicationVersion(QStringLiteral("1.0.0"));
     app.setOrganizationName(QStringLiteral("cutefishos"));
     app.setOrganizationDomain(QStringLiteral("cutefishos.com"));
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     app.setWindowIcon(appIcon);
 
     QCommandLineParser parser;
-    parser.setApplicationDescription(QStringLiteral("Cutefish System Monitor and Task Manager"));
+    parser.setApplicationDescription(QStringLiteral("mimo OS System Monitor and Task Manager"));
     parser.addHelpOption();
     parser.addVersionOption();
 

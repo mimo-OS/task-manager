@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Task Manager
 Name[zh_CN]=任务管理器
-GenericName=System Monitor
-Comment=View and manage processes, system performance, and storage
+GenericName=mimo OS Task Manager
+Comment=View and manage processes, system performance, and storage on mimo OS
 Exec=cutefish-taskmanager
 Icon=cutefish-taskmanager
 Terminal=false
