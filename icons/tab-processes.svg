@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <defs>
+    <linearGradient id="procGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#007AFF"/>
+      <stop offset="100%" stop-color="#00C6FF"/>
+    </linearGradient>
+  </defs>
+  <!-- Row 1 -->
+  <rect x="2.5" y="3" width="19" height="4.5" rx="2.25" fill="url(#procGrad)"/>
+  <circle cx="5" cy="5.25" r="1.2" fill="#FFFFFF"/>
+  <rect x="7.5" y="4.5" width="7" height="1.5" rx="0.75" fill="#FFFFFF" opacity="0.9"/>
+  <rect x="17" y="4.5" width="3" height="1.5" rx="0.75" fill="#FFFFFF" opacity="0.75"/>
+
+  <!-- Row 2 -->
+  <rect x="2.5" y="9.75" width="19" height="4.5" rx="2.25" fill="#8E8E93" opacity="0.25"/>
+  <circle cx="5" cy="12" r="1.2" fill="#007AFF"/>
+  <rect x="7.5" y="11.25" width="9" height="1.5" rx="0.75" fill="#8E8E93" opacity="0.8"/>
+  <rect x="18" y="11.25" width="2" height="1.5" rx="0.75" fill="#8E8E93" opacity="0.6"/>
+
+  <!-- Row 3 -->
+  <rect x="2.5" y="16.5" width="19" height="4.5" rx="2.25" fill="#8E8E93" opacity="0.25"/>
+  <circle cx="5" cy="18.75" r="1.2" fill="#34C759"/>
+  <rect x="7.5" y="18" width="6" height="1.5" rx="0.75" fill="#8E8E93" opacity="0.8"/>
+  <rect x="16" y="18" width="4" height="1.5" rx="0.75" fill="#8E8E93" opacity="0.6"/>
+</svg>

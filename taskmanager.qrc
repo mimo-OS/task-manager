@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/HeaderBar.qml</file>
+        <file>qml/SegmentedTabs.qml</file>
+        <file>qml/ResourceCard.qml</file>
+        <file>qml/ProcessesView.qml</file>
+        <file>qml/ResourcesView.qml</file>
+        <file>qml/FileSystemsView.qml</file>
+        <file>qml/SystemInfoView.qml</file>
+        <file>qml/ProcessDetailsDialog.qml</file>
+        <file>qml/PriorityDialog.qml</file>
+        <file>icons/cutefish-taskmanager.svg</file>
+        <file>icons/tab-processes.svg</file>
+        <file>icons/tab-resources.svg</file>
+        <file>icons/tab-storage.svg</file>
+        <file>icons/tab-system.svg</file>
+        <file>icons/action-end.svg</file>
+        <file>icons/action-kill.svg</file>
+        <file>icons/action-pause.svg</file>
+        <file>icons/action-resume.svg</file>
+        <file>icons/action-priority.svg</file>
+        <file>icons/action-details.svg</file>
+        <file>icons/metric-cpu.svg</file>
+        <file>icons/metric-memory.svg</file>
+        <file>icons/metric-network.svg</file>
+        <file>icons/metric-disk.svg</file>
+        <file>icons/process-default.svg</file>
+        <file>icons/process-system.svg</file>
+    </qresource>
+</RCC>

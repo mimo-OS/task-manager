@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Task Manager
+Name[zh_CN]=任务管理器
+GenericName=System Monitor
+Comment=View and manage processes, system performance, and storage
+Exec=cutefish-taskmanager
+Icon=cutefish-taskmanager
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Qt;System;Monitor;
+Keywords=system;process;task;manager;cpu;memory;disk;network;monitor;performance;
